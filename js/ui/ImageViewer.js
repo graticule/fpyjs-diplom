@@ -4,7 +4,13 @@
  * */
 class ImageViewer {
   constructor( element ) {
+    this.viewer = element;
+    this.preview = this.viewer.querySelector('.image');
+    this.imageList = this.viewer.querySelector('.images-list');
+    this.drawImages = this.drawImages.bind(this);
+    this.images = [];
 
+    this.registerEvents();
   }
 
   /**
@@ -17,13 +23,24 @@ class ImageViewer {
    * 5. Клик по кнопке "Отправить на диск" открывает всплывающее окно для загрузки файлов
    */
   registerEvents(){
-
+    this.viewer.addEventListener('click', (e) => {
+      const target = e.target;
+      console.log(target);
+    })
+    this.viewer.addEventListener('dblclick', (e) => {
+      const target = e.target;
+      console.log('double');
+    })
   }
 
   /**
    * Очищает отрисованные изображения
    */
   clear() {
+    this.images.forEach(el => {
+      el.remove();
+    })
+    this.images = [];
 
   }
 
@@ -31,7 +48,15 @@ class ImageViewer {
    * Отрисовывает изображения.
   */
   drawImages(images) {
-
+    images.forEach(element => {
+      console.log(element);
+      const image = document.createElement('DIV');
+      image.classList.add('four', 'wide', 'column', 'ui', 'medium', 'image-wrapper')
+      image.innerHTML = `<img src=${element} />`;
+      this.imageList.appendChild(image);
+      this.images.push(image);
+    });
+    
   }
 
   /**
