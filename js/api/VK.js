@@ -33,7 +33,8 @@ class VK {
       }
     })
     if (result.error) {
-      alert(result.error.error_msg)
+      alert(result.error.error_msg);
+      this.lastCallback = () => {};
       return
     }
     console.log(result)

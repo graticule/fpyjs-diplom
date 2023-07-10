@@ -25,11 +25,11 @@ class ImageViewer {
   registerEvents(){
     this.viewer.addEventListener('click', (e) => {
       const target = e.target;
-      console.log(target);
+      target.classList.toggle('selected');
     })
     this.viewer.addEventListener('dblclick', (e) => {
       const target = e.target;
-      console.log('double');
+      this.preview.src = target.src;
     })
   }
 
